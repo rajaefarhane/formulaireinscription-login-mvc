@@ -18,8 +18,10 @@
 if(empty($message)){
   include("model/connexion.php");
   $req=$pdo->prepare("select id from users where login=? limit 1");
+	// retourne un tableau indexé par le nom de la colonne
   $req->setFetchMode(PDO::FETCH_ASSOC);
   $req->execute(array($login));
+	//tab assocc
   $tab=$req->fetchAll();
   if(count($tab)>0)
     $message="<li>Login existe déjà!</li>";
@@ -49,7 +51,7 @@ if(empty($message)){
 			<input type="text" name="prenom" value="<?php echo $prenom?>" />
 			<div class="label">Email</div>
 			<input type="text" name="login" value="<?php echo $login?>"
-				pattern="^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$"/>
+				pattern="^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,4})$"/>
 
 
 
